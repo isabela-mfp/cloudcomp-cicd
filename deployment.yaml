@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: isabelapires-recommender-playlist
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: isabelapires-recommender-playlist
+  template:
+    metadata:
+      labels:
+        app: isabelapires-recommender-playlist
+    spec:
+      containers:
+        - name: isabelapires-recommender
+          image: isabelapires/ml-model
+          ports:
+            - containerPort: 32187
+          volumeMounts:
+            - name: shared-volume
+              mountPath: "/recommender/shared"
+        - name: isabelapires-webservice
+          image: isabelapires/flask-webservice
+          ports:
+            - containerPort: 32187
+          volumeMounts:
+            - name: shared-volume
+              mountPath: "/app/shared"
+      volumes:
+        - name: shared-volume
+          persistentVolumeClaim:
+            claimName: shared-pvc
