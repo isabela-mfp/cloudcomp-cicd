@@ -18,16 +18,16 @@ spec:
           ports:
             - containerPort: 32187
           volumeMounts:
-            - name: shared-volume
+            - name: isabelapires-shared-pvc
               mountPath: "/recommender/shared"
         - name: isabelapires-webservice
           image: isabelapires/flask-webservice
           ports:
             - containerPort: 32187
           volumeMounts:
-            - name: shared-volume
+            - name: isabelapires-shared-pvc
               mountPath: "/app/shared"
       volumes:
-        - name: shared-volume
+        - name: isabelapires-shared-pvc
           persistentVolumeClaim:
             claimName: isabelapires-shared-pvc
