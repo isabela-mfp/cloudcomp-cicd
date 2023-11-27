@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
         - name: isabelapires-recommender
-          image: isabelapires/ml-model
+          image: isabelaferreira/ml-model:0.1
           ports:
             - containerPort: 32187
           volumeMounts:
             - name: isabelapires-shared-pvc
               mountPath: "/recommender/shared"
         - name: isabelapires-webservice
-          image: isabelapires/flask-webservice
+          image: isabelaferreira/flask-webservice:0.1
           ports:
             - containerPort: 32187
           volumeMounts:
