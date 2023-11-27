@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: isabelapires-recommender-playlist
 spec:
-  replicas: 0
+  replicas: 3
   selector:
     matchLabels:
       app: isabelapires-recommender-playlist
